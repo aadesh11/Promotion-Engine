@@ -59,11 +59,15 @@ public class ProductQuantityPromotion implements PromotionService {
             return (dis.multiple * dis.perIndex * dis.unitPrice) - (dis.multiple * discountValue);
         }
 
+        //if promotions is for multiple products like for product C & D,
+        //then take the one for which multiple is minimum.
         Optional<PromotionDiscount> minApplied = promotionDiscounts.stream()
                 .min(Comparator.comparingLong(p -> p.multiple));
 
         if (minApplied.isPresent()) {
             PromotionDiscount min = minApplied.get();
+            //operation for cases C & D, add the total price of product C & D only for quantity for which promotion
+            //has been covered minus multiple * promotion discounted value.
             return promotionDiscounts.stream()
                     .mapToDouble(prm -> prm.unitPrice * min.multiple * prm.perIndex).sum()
                     - (discountValue * min.multiple);
@@ -76,10 +80,13 @@ public class ProductQuantityPromotion implements PromotionService {
     @AllArgsConstructor
     static class PromotionDiscount {
 
+        //total number of times cart item has been covered by promotion item.
         private final long multiple;
 
+        //quantity of discount promotion item.
         private final double perIndex;
 
+        //product unit price.
         private final double unitPrice;
 
     }
