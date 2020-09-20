@@ -27,7 +27,8 @@ public class ProductQuantityPromotion implements PromotionService {
 
         //check if promotion matches with any cart items by checking the product & quantity.
         if (discountItems.stream()
-                .anyMatch(discountItem -> (!cartItems.containsKey(discountItem.code())))) {
+                .anyMatch(discountItem -> (!cartItems.containsKey(discountItem.code()))
+                        || cartItems.get(discountItem.code()).quantity() < discountItem.quantity())) {
             return 0.0d;
         }
 
