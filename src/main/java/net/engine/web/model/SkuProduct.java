@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+/**
+ * SKU product details.
+ */
 @Getter
 @Setter
 @Accessors(fluent = true)

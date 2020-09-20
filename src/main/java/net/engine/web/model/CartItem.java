@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
+/**
+ * Items in the cart with product & its quantity.
+ */
 @Getter
 @Setter
 @Accessors(fluent = true)
