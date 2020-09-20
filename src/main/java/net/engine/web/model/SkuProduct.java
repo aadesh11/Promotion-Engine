@@ -9,9 +9,14 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(fluent = true)
 @AllArgsConstructor
-public class SkuProduct {
+public class SkuProduct implements CodeIdentifier {
 
     private String name;
 
     private double price;
+
+    @Override
+    public String code() {
+        return name;
+    }
 }

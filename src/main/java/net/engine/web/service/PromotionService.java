@@ -2,7 +2,9 @@ package net.engine.web.service;
 
 import net.engine.web.model.CartItem;
 
+import java.util.List;
+
 public interface PromotionService {
 
-    double getDiscount(CartItem cartItem);
+    double getDiscount(List<CartItem> cartItems);
 }

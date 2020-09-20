@@ -10,9 +10,14 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(fluent = true)
 @AllArgsConstructor
-public class CartItem {
+public class CartItem implements CodeIdentifier {
 
-    private String product;
+    private String productName;
 
     private double quantity;
+
+    @Override
+    public String code() {
+        return productName;
+    }
 }
