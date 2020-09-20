@@ -56,7 +56,7 @@ public class ProductQuantityPromotion implements PromotionService {
             PromotionDiscount dis = promotionDiscounts.get(0);
             /** calculate the total price for the items for which discount has been covered
              minus multiple * promotion discount value. **/
-            return (dis.multiple * dis.perIndex * dis.unitPrice) - (dis.multiple * discountValue);
+            return (dis.multiple * dis.perDiscountItemQuantity * dis.unitPrice) - (dis.multiple * discountValue);
         }
 
         //if promotions is for multiple products like for product C & D,
@@ -69,9 +69,8 @@ public class ProductQuantityPromotion implements PromotionService {
             //operation for cases C & D, add the total price of product C & D only for quantity for which promotion
             //has been covered minus multiple * promotion discounted value.
             return promotionDiscounts.stream()
-                    .mapToDouble(prm -> prm.unitPrice * min.multiple * prm.perIndex).sum()
+                    .mapToDouble(prm -> prm.unitPrice * min.multiple * prm.perDiscountItemQuantity).sum()
                     - (discountValue * min.multiple);
-
         }
         return 0.0d;
 
@@ -84,7 +83,7 @@ public class ProductQuantityPromotion implements PromotionService {
         private final long multiple;
 
         //quantity of discount promotion item.
-        private final double perIndex;
+        private final double perDiscountItemQuantity;
 
         //product unit price.
         private final double unitPrice;
