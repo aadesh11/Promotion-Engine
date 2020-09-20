@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Setter
@@ -34,11 +35,10 @@ public class ProductQuantityPromotion implements PromotionService {
             return 0.0d;
         }
 
-        List<PromotionDiscount> promotionDiscounts = new ArrayList<>();
-        for (CartItem discountItem : discountItems) {
+        List<PromotionDiscount> promotionDiscounts = discountItems.stream().map(discountItem -> {
             CartItem cart = cartItems.get(discountItem.code());
             double discountItemQuantity = discountItem.quantity();
-            long iteration = 0;
+            long iter = 0;
             //get the product details.
             SkuProduct productDetails = productMap.get(discountItem.code());
             if (productDetails == null) {
@@ -46,10 +46,10 @@ public class ProductQuantityPromotion implements PromotionService {
             }
             while (discountItemQuantity <= cart.quantity()) {
                 discountItemQuantity += discountItem.quantity();
-                iteration++;
+                iter++;
             }
-            promotionDiscounts.add(new PromotionDiscount(iteration, discountItem.quantity(), productDetails.price()));
-        }
+            return new PromotionDiscount(iter, discountItem.quantity(), productDetails.price());
+        }).collect(Collectors.toList());
 
         //if promotion is for single product present in cart items.
         if (promotionDiscounts.size() == 1) {
