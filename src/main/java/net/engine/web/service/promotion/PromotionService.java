@@ -1,4 +1,4 @@
-package net.engine.web.service;
+package net.engine.web.service.promotion;
 
 import net.engine.web.model.CartItem;
 import net.engine.web.model.SkuProduct;

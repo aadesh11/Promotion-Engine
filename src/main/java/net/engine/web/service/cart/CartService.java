@@ -1,4 +1,4 @@
-package net.engine.web.service;
+package net.engine.web.service.cart;
 
 import net.engine.web.model.CartItem;
 

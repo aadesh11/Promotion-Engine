@@ -2,10 +2,10 @@ package net.engine.web;
 
 import net.engine.web.model.CartItem;
 import net.engine.web.model.SkuProduct;
-import net.engine.web.service.CartService;
-import net.engine.web.service.DefaultCartService;
-import net.engine.web.service.ProductQuantityPromotion;
-import net.engine.web.service.PromotionService;
+import net.engine.web.service.cart.CartService;
+import net.engine.web.service.cart.DefaultCartService;
+import net.engine.web.service.promotion.ProductQuantityPromotion;
+import net.engine.web.service.promotion.PromotionService;
 import org.junit.Test;
 
 import java.util.ArrayList;

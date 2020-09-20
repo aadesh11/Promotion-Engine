@@ -1,4 +1,4 @@
-package net.engine.web.service;
+package net.engine.web.service.product;
 
 import net.engine.web.model.SkuProduct;
 
