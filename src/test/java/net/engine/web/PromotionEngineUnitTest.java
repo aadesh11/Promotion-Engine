@@ -54,4 +54,27 @@ public class PromotionEngineUnitTest {
 
         assertEquals(productRepository.findAll().size(), 1);
     }
+
+    @Test
+    public void promotionCoupons() {
+        List<PromotionService> promotions = new ArrayList<>();
+
+        //Prepare promotion
+        PromotionService productAPromo = promotionService.savePromotion(new ArrayList<CartItem>() {{
+            add(new CartItem("A", 3));
+        }}, 130);
+        PromotionService productBPromo = promotionService.savePromotion(new ArrayList<CartItem>() {{
+            add(new CartItem("B", 2));
+        }}, 45);
+        PromotionService productCDPromo = promotionService.savePromotion(new ArrayList<CartItem>() {{
+            add(new CartItem("C", 1));
+            add(new CartItem("D", 1));
+        }}, 30);
+
+        promotions.add(productAPromo);
+        promotions.add(productBPromo);
+        promotions.add(productCDPromo);
+
+        assertEquals(promotions.size(), 3);
+    }
 }

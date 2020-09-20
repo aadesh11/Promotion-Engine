@@ -76,6 +76,12 @@ public class ProductQuantityPromotion implements PromotionService {
 
     }
 
+    @Override
+    public PromotionService savePromotion(List<CartItem> items, double discountPrice) {
+        //save will be saved in database.
+        return new ProductQuantityPromotion(items, discountValue);
+    }
+
     @AllArgsConstructor
     static class PromotionDiscount {
 
