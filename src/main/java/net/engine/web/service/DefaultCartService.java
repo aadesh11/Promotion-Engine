@@ -20,11 +20,12 @@ public class DefaultCartService implements CartService {
 
     @Override
     public double getBillingAmount(List<CartItem> cartItemList) {
-        double discountedValue = 0;
+        Map<String, CartItem> carts = ConverterUtils.convert(cartItemList);
 
+        double discountedValue = 0;
         //get discounted amount.
         for(PromotionService promotion : promotions) {
-            discountedValue += promotion.getDiscount(cartItemList);
+            discountedValue += promotion.getDiscount(carts, productsMap);
         }
 
         //return the billing amount after subtracting total cart price with discounted value
