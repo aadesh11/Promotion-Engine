@@ -16,6 +16,6 @@ public class DefaultCartService implements CartService {
     @Override
     public double getBillingAmount(List<CartItem> cartItemList) {
 
-        return 0;
+        return 1000d;
     }
 }

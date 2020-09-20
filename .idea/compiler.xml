@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Promotion-Engine" target="1.5" />
+      <module name="Promotion-Engine" target="8" />
       <module name="promotion-engine-web" target="1.5" />
     </bytecodeTargetLevel>
   </component>
