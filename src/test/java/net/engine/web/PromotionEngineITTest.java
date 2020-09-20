@@ -15,8 +15,48 @@ import static org.junit.Assert.assertTrue;
 
 public class PromotionEngineITTest {
 
+    //Scenario B as per the question
     @Test
-    public void expectDiscountIt() {
+    public void expectDiscountItB() {
+
+        //Add products
+        List<SkuProduct> products = new ArrayList<>();
+        products.add(new SkuProduct("A", 50));
+        products.add(new SkuProduct("B", 30));
+        products.add(new SkuProduct("C", 20));
+        products.add(new SkuProduct("D", 15));
+
+        //prepare promotions
+        PromotionService productAPromo = new ProductQuantityPromotion(new ArrayList<CartItem>() {{
+            add(new CartItem("A", 3));
+        }}, 130);
+        ProductQuantityPromotion productBPromo = new ProductQuantityPromotion(new ArrayList<CartItem>() {{
+            add(new CartItem("B", 2));
+        }}, 45);
+        ProductQuantityPromotion productCDPromo = new ProductQuantityPromotion(new ArrayList<CartItem>() {{
+            add(new CartItem("C", 1));
+            add(new CartItem("D", 1));
+        }}, 30);
+
+        List<PromotionService> promotions = new ArrayList<>();
+        promotions.add(productAPromo);
+        promotions.add(productBPromo);
+        promotions.add(productCDPromo);
+
+        //prepare cart
+        List<CartItem> carts = new ArrayList<>();
+        carts.add(new CartItem("A", 5));
+        carts.add(new CartItem("B", 5));
+        carts.add(new CartItem("C", 1));
+
+        //get the final billing amount.
+        CartService cartService = new DefaultCartService(promotions, products);
+        assertTrue("Amount should be 1000 Rs", cartService.getBillingAmount(carts) == 370.0d);
+    }
+
+    //Scenario C third as per the question
+    @Test
+    public void expectDiscountItC() {
 
         //Add products
         List<SkuProduct> products = new ArrayList<>();
