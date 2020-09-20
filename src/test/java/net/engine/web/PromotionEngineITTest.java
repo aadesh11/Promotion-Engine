@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 public class PromotionEngineITTest {
 
-    //Scenario A as per the question
+    //Scenario A
     @Test
     public void expectDiscountItA() {
 
@@ -54,7 +54,7 @@ public class PromotionEngineITTest {
         assertTrue("Amount should be 1000 Rs", cartService.getBillingAmount(carts) == 100.0d);
     }
 
-    //Scenario B as per the question
+    //Scenario B
     @Test
     public void expectDiscountItB() {
 
@@ -93,7 +93,7 @@ public class PromotionEngineITTest {
         assertTrue("Amount should be 1000 Rs", cartService.getBillingAmount(carts) == 370.0d);
     }
 
-    //Scenario C third as per the question
+    //Scenario C
     @Test
     public void expectDiscountItC() {
 
