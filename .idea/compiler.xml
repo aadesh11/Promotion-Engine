@@ -7,9 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="promotion-engine-web" />
+        <module name="Promotion-Engine" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Promotion-Engine" target="1.5" />
       <module name="promotion-engine-web" target="1.5" />
     </bytecodeTargetLevel>
   </component>
