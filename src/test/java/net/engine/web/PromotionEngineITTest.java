@@ -17,7 +17,6 @@ public class PromotionEngineITTest {
 
     @Test
     public void expectDiscountIt() {
-        //Test only for promotions which is not clubbed like C & D.
 
         //Add products
         List<SkuProduct> products = new ArrayList<>();
@@ -35,7 +34,8 @@ public class PromotionEngineITTest {
         }}, 45);
         ProductQuantityPromotion productCDPromo = new ProductQuantityPromotion(new ArrayList<CartItem>() {{
             add(new CartItem("C", 1));
-        }}, 20);
+            add(new CartItem("D", 1));
+        }}, 30);
 
         List<PromotionService> promotions = new ArrayList<>();
         promotions.add(productAPromo);
@@ -44,12 +44,13 @@ public class PromotionEngineITTest {
 
         //prepare cart
         List<CartItem> carts = new ArrayList<>();
-        carts.add(new CartItem("A", 5));
+        carts.add(new CartItem("A", 3));
         carts.add(new CartItem("B", 5));
         carts.add(new CartItem("C", 1));
+        carts.add(new CartItem("D", 1));
 
         //get the final billing amount.
         CartService cartService = new DefaultCartService(promotions, products);
-        assertTrue("Amount should be 1000 Rs", cartService.getBillingAmount(carts) == 370.0d);
+        assertTrue("Amount should be 1000 Rs", cartService.getBillingAmount(carts) == 280.0d);
     }
 }

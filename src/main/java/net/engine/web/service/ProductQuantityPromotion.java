@@ -8,8 +8,10 @@ import net.engine.web.model.CartItem;
 import net.engine.web.model.SkuProduct;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Setter
@@ -55,6 +57,17 @@ public class ProductQuantityPromotion implements PromotionService {
             /** calculate the total price for the items for which discount has been covered
              minus multiple * promotion discount value. **/
             return (dis.multiple * dis.perIndex * dis.unitPrice) - (dis.multiple * discountValue);
+        }
+
+        Optional<PromotionDiscount> minApplied = promotionDiscounts.stream()
+                .min(Comparator.comparingLong(p -> p.multiple));
+
+        if (minApplied.isPresent()) {
+            PromotionDiscount min = minApplied.get();
+            return promotionDiscounts.stream()
+                    .mapToDouble(prm -> prm.unitPrice * min.multiple * prm.perIndex).sum()
+                    - (discountValue * min.multiple);
+
         }
         return 0.0d;
 
